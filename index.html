@@ -28,12 +28,17 @@ p { font-size: 1.3em; }
 <script>
 function convertToKanji(){
   const input = document.getElementById("toKanji").value.trim();
-  document.getElementById("outKanji").textContent = dict[input] || "(変換なし)";
+  const result = dict[input];
+  if (result) {
+    document.getElementById("outKanji").textContent = "候補: " + result.join(", ");
+  } else {
+    document.getElementById("outKanji").textContent = "(変換候補なし)";
+  }
 }
 
 function convertToRomaji(){
   const input = document.getElementById("toRomaji").value.trim();
-  document.getElementById("outRomaji").textContent = reverseDict[input] || "(変換なし)";
+  document.getElementById("outRomaji").textContent = reverseDict[input] || "(変換候補なし)";
 }
 </script>
 
